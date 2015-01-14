@@ -4,7 +4,7 @@ from werkzeug import generate_password_hash, check_password_hash
 db = SQLAlchemy()
 
 class User(db.Model):
-  __tablename__ = 'users'
+  __tablename__ = 'User'
   uid = db.Column(db.Integer, primary_key = True)
   uname = db.Column(db.String(30))
   pwd = db.Column(db.String(200))
@@ -19,4 +19,22 @@ class User(db.Model):
     self.pwdhash = generate_password_hash(password)
    
   def check_password(self, password):
-    return check_password_hash(self.pwdhash, password)
+    return check_password_hash(self.pwd, password)
+
+class Note(db.Model):
+  __tablename__ = 'NoteData'
+  nid = db.Column(db.Integer, primary_key = True,auto_incerement = True)
+  title = db.Column(db.String(30))
+  body = db.Column(db.String(60))
+  uid = db.Column(db.Integer, unique=True)
+   
+  def __init__(self,title,body,uid):
+    self.title = title
+    self.body = body()
+    self.uid = uid
+     
+  def set_password(self, password):
+    self.pwdhash = generate_password_hash(password)
+   
+  def check_password(self, password):
+    return check_password_hash(self.pwd, password)

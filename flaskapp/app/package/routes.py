@@ -3,7 +3,7 @@ from flask import Flask, flash, redirect, url_for, request, render_template, red
 from flaskext.mysql import MySQL
 from flask.ext.wtf import Form
 from wtforms import BooleanField, TextField, PasswordField, validators
-from models import db
+from models import db,User
 
 class LoginForm(Form):
 	email = TextField('Email',[validators.Required()])
@@ -15,7 +15,7 @@ class LoginForm(Form):
 		rv = Form.validate(self)
 		if not rv:
 			return False
-		user = User.query.filter_by( email=self.email.data ).first()
+		user = User.query.filter_by( email=self.email.data.lower() ).first()
 		if user is None:
 			self.email.errors.append('Unknown mail ID')
 			return False
@@ -48,8 +48,9 @@ def login():
 	form = LoginForm()
 	if form.validate_on_submit():
 		flash('Login successful.')
-		session['user_id'] = form.user.id
-		return redirect('/home')
+		#user = User.query.filter_by(email = form.email.data.lower()).first()
+		session['uid'] = form.user.uid
+		return redirect('/')
 	return render_template('login.html', form=form)
 
 @app.route('/register',methods=['GET','POST'])
@@ -75,10 +76,9 @@ def about():
 def save():
 	title = request.form['ntitle']
 	body = request.form['nbody']
-	con = mysql.connect()
-	cursor = con.cursor()
-	cursor.execute("insert into NoteData values (%s,%s,NULL);", (title,body) )
-	con.commit()
+	note = Note(title,body,session['uid'])
+	db.session.add(note)
+	db.session.commit()
 	flash('Note saved successfully.')
 	return redirect("/")
 
