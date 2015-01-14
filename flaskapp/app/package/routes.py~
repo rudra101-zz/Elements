@@ -49,7 +49,7 @@ def login():
 	if form.validate_on_submit():
 		flash('Login successful.')
 		#user = User.query.filter_by(email = form.email.data.lower()).first()
-		session['user_id'] = form.user.uid
+		session['uid'] = form.user.uid
 		return redirect('/')
 	return render_template('login.html', form=form)
 
@@ -76,10 +76,9 @@ def about():
 def save():
 	title = request.form['ntitle']
 	body = request.form['nbody']
-	con = mysql.connect()
-	cursor = con.cursor()
-	cursor.execute("insert into NoteData values (%s,%s,NULL);", (title,body) )
-	con.commit()
+	note = Note(title,body,session['uid'])
+	db.session.add(note)
+	db.session.commit()
 	flash('Note saved successfully.')
 	return redirect("/")
 

@@ -23,14 +23,14 @@ class User(db.Model):
 
 class Note(db.Model):
   __tablename__ = 'NoteData'
-  nid = db.Column(db.Integer, primary_key = True,auto_incerement = True)
+  nid = db.Column(db.Integer, primary_key = True)
   title = db.Column(db.String(30))
   body = db.Column(db.String(60))
   uid = db.Column(db.Integer, unique=True)
    
   def __init__(self,title,body,uid):
     self.title = title
-    self.body = body()
+    self.body = body
     self.uid = uid
      
   def set_password(self, password):

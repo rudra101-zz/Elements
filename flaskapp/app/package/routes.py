@@ -3,7 +3,7 @@ from flask import Flask, flash, redirect, url_for, request, render_template, red
 from flaskext.mysql import MySQL
 from flask.ext.wtf import Form
 from wtforms import BooleanField, TextField, PasswordField, validators
-from models import db,User
+from models import db,User,Note
 
 class LoginForm(Form):
 	email = TextField('Email',[validators.Required()])
