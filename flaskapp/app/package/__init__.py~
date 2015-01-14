@@ -1,0 +1,6 @@
+from flask import Flask
+ 
+app = Flask(__name__)
+app.secret_key = 'secrets_are_meant_to_be_kept'
+
+import package.routes

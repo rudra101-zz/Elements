@@ -1,0 +1,86 @@
+from package import app
+from flask import Flask, flash, redirect, url_for, request, render_template, redirect, session
+from flaskext.mysql import MySQL
+from flask.ext.wtf import Form
+from wtforms import BooleanField, TextField, PasswordField, validators
+from models import db
+
+class LoginForm(Form):
+	email = TextField('Email',[validators.Required()])
+	password = PasswordField('Password',[validators.Required()])
+	def __init__(self,*args, **kwargs):
+		Form.__init__(self,*args,**kwargs)
+		self.user = None
+	def validate(self):
+		rv = Form.validate(self)
+		if not rv:
+			return False
+		user = User.query.filter_by( email=self.email.data ).first()
+		if user is None:
+			self.email.errors.append('Unknown mail ID')
+			return False
+		if not user.check_password(self.password.data):
+			self.password.errors.append('Invalid password')
+			return False
+		self.user = user
+		return True
+
+class RegistrationForm(Form):
+	username = TextField('Username', [validators.Length(min=4, max=25)])
+	email = TextField('Email', [validators.Length(min=6, max=35)])
+	password = PasswordField('Password', [
+	validators.Required(),validators.EqualTo('confirm', message='Passwords must match')])
+	confirm = PasswordField('Repeat Password')
+	def __init__(self, *args, **kwargs):
+		Form.__init__(self, *args, **kwargs)
+	def validate(self):
+		if not Form.validate(self):
+			return False
+		user = User.query.filter_by(email = self.email.data.lower()).first()
+		if user:
+			self.email.errors.append("That email is already taken")
+			return False
+		else:
+			return True
+
+@app.route('/login',methods=['GET','POST'])
+def login():
+	form = LoginForm()
+	if form.validate_on_submit():
+		flash('Login successful.')
+		session['user_id'] = form.user.id
+		return redirect('/home')
+	return render_template('login.html', form=form)
+
+@app.route('/register',methods=['GET','POST'])
+def register():
+    form = RegistrationForm(request.form)
+    if request.method == 'POST' and form.validate():
+	newuser = User(form.username.data, form.password.data, form.email.data)
+	db.session.add(newuser)
+	db.session.commit()        
+	flash('Thanks for registering.')
+        return redirect('/login')
+    return render_template('register.html', form=form)
+
+@app.route('/')
+def home():
+ return render_template('home.html')
+	
+@app.route('/about')
+def about():
+  return render_template('about.html')
+
+@app.route('/save',methods=['POST'])
+def save():
+	title = request.form['ntitle']
+	body = request.form['nbody']
+	con = mysql.connect()
+	cursor = con.cursor()
+	cursor.execute("insert into NoteData values (%s,%s,NULL);", (title,body) )
+	con.commit()
+	flash('Note saved successfully.')
+	return redirect("/")
+
+if __name__ == '__main__':
+	app.run(debug=True)

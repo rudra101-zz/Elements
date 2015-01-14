@@ -1,8 +1,9 @@
 <html>
-<title>Register for Noter</title>
+<title>Login to use Noter</title>
 {% from "_formhelpers.html" import render_field %}
 <form method=post action="/login">
   <dl>
+    {{ form.csrf_token }}
     {{ render_field(form.email) }}
     {{ render_field(form.password) }}
   </dl>
