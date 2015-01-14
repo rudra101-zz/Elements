@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+  
+{% block content %}
+  <h2>About</h2>
+  <p>Noter lets you add notes in a jiffy.</p>
+  <p>Currently, it is being developed by Rudradeep Mukherjee under the mentorship of Nimesh Ghelani.</p>
+{% endblock %}

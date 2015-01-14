@@ -1,0 +1,13 @@
+<html>
+<title>Register for Noter</title>
+{% from "_formhelpers.html" import render_field %}
+<form method=post action="/register">
+  <dl>
+    {{ render_field(form.username) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.confirm) }}
+  </dl>
+  <input type=submit value=Register>
+</form>
+</html>
