@@ -11,12 +11,12 @@ class User(db.Model):
   email = db.Column(db.String(200), unique=True)
    
   def __init__(self, uname, password, email):
-    self.uname = username.lower()
+    self.uname = uname.lower()
     self.email = email.lower()
     self.set_password(password)
      
   def set_password(self, password):
-    self.pwdhash = generate_password_hash(password)
+    self.pwd = generate_password_hash(password)
    
   def check_password(self, password):
     return check_password_hash(self.pwd, password)
@@ -34,7 +34,7 @@ class Note(db.Model):
     self.uid = uid
      
   def set_password(self, password):
-    self.pwdhash = generate_password_hash(password)
+    self.pwd = generate_password_hash(password)
    
   def check_password(self, password):
     return check_password_hash(self.pwd, password)

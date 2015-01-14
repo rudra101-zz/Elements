@@ -64,6 +64,12 @@ def register():
         return redirect('/login')
     return render_template('register.html', form=form)
 
+@app.route('/logout')
+def logout():
+	if 'uid' not in session:
+		return redirect('/login')
+	session.pop('uid',None)
+	return redirect('/')
 @app.route('/')
 def home():
  return render_template('home.html')
