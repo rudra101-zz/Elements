@@ -10,8 +10,8 @@
     <h1 class="logo">Noter</h1>
     <strong><nav>
       <ul class="menu">
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('notes') }}">Notes</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
       </ul>
     </nav></strong>
   </div>
@@ -30,7 +30,7 @@
 	Add title:<br>
 	<input type="text" name="ntitle" size="20"><br>
 	Add body:<br>
-	<input type="text" name="nbody" size="171"><br>
+	<textarea rows="6" cols="70" name="nbody"></textarea><br>
 <input type="submit" value="Save">
 </form>
 </div>

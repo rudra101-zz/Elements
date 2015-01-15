@@ -45,6 +45,8 @@ class RegistrationForm(Form):
 
 @app.route('/login',methods=['GET','POST'])
 def login():
+	if 'uid' in session:
+		return redirect('/')
 	form = LoginForm()
 	if form.validate_on_submit():
 		flash('Login successful.')
@@ -55,6 +57,8 @@ def login():
 
 @app.route('/register',methods=['GET','POST'])
 def register():
+    if 'uid' in session:
+		return redirect('/')
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
 	newuser = User(form.username.data, form.password.data, form.email.data)
@@ -67,13 +71,22 @@ def register():
 @app.route('/logout')
 def logout():
 	if 'uid' not in session:
-		return redirect('/login')
+		return redirect('/')
 	session.pop('uid',None)
 	return redirect('/')
+
 @app.route('/')
 def home():
- return render_template('home.html')
-	
+	if 'uid' not in session:
+		return render_template('home.html')
+	return render_template('layout.html')
+
+@app.route('/notes')
+def notes():	
+	if 'uid' not in session:
+		return render_template('/')
+	return render_template('notes.html')
+
 @app.route('/about')
 def about():
   return render_template('about.html')
