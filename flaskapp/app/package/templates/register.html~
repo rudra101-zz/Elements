@@ -1,8 +1,27 @@
+<!DOCTYPE html>
 <html>
-<title>Register for Noter</title>
+<head>
+<title>Welcome to Noter!</title>
+<strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1 class="logo"><a href="{{ url_for('home') }}" >Noter</a></h1>
+    <strong><nav>
+      <ul class="menu">
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+      </ul>
+    </nav></strong>
+  </div>
+</header>
+<h3>Register for Noter</h3>
 {% from "_formhelpers.html" import render_field %}
+<div class="container">
 <form method="post" action="/register">
   <dl>
+    {{ form.csrf_token }}
     {{ render_field(form.username) }}
     {{ render_field(form.email) }}
     {{ render_field(form.password) }}
@@ -10,4 +29,5 @@
   </dl>
   <input type=submit value=Register>
 </form>
+</div>
 </html>

@@ -1,11 +1,22 @@
-<html>
-<title>Login to use Noter</title>
-{% from "_formhelpers.html" import render_field %}
+{% extends "loglayout.html" %}
+ 
+{% block content %}
+<h3>Login to use Noter</h3>
+ 
+  {% for message in form.email.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+   
+  {% for message in form.password.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
 <form method=post action="/login">
-  <dl>
-    {{ render_field(form.email) }}
-    {{ render_field(form.password) }}
-  </dl>
-  <p><input type=submit value=Login>
+	{{ form.csrf_token }}
+	{{ form.email.label }}
+	{{ form.email }}
+	{{ form.password.label }}
+	{{ form.password }}  
+	{{ form.submit }}
 </form>
-</html>
+{% endblock %}
+

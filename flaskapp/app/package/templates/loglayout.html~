@@ -7,7 +7,7 @@
 <body>
 <header>
   <div class="container">
-    <h1 class="logo"><a class="head" href="{{ url_for('home') }}" >Noter</a></h1>
+    <h1 class="logo"><a href="{{ url_for('home') }}" >Noter</a></h1>
     <strong><nav>
       <ul class="menu">
         <li><a href="{{ url_for('login') }}">Login</a></li>
@@ -16,18 +16,9 @@
     </nav></strong>
   </div>
 </header>
-<h3>Register for Noter</h3>
-{% from "_formhelpers.html" import render_field %}
 <div class="container">
-<form method="post" action="/register">
-  <dl>
-    {{ form.csrf_token }}
-    {{ render_field(form.username) }}
-    {{ render_field(form.email) }}
-    {{ render_field(form.password) }}
-    {{ render_field(form.confirm) }}
-  </dl>
-  <input type=submit value=Register>
-</form>
+      {% block content %}
+     {% endblock %}
 </div>
+</body>
 </html>

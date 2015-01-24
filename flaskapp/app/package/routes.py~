@@ -8,6 +8,7 @@ from models import db,User,Note
 class LoginForm(Form):
 	email = TextField('Email',[validators.Required()])
 	password = PasswordField('Password',[validators.Required()])
+	submit = SubmitField("Login")
 	def __init__(self,*args, **kwargs):
 		Form.__init__(self,*args,**kwargs)
 		self.user = None
@@ -86,6 +87,7 @@ def notes():
 	if 'uid' not in session:
 		return render_template('/')
 	return render_template('notes.html')
+
 @app.route('/about')
 def about():
   return render_template('about.html')

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
   
 {% block content %}
-  <h2>About</h2>
+  <h3>About Noter</h3>
   <p>Noter lets you add notes in a jiffy.</p>
-  <p>Currently, it is being developed by Rudradeep Mukherjee under the mentorship of Nimesh Ghelani.</p>
+  <p>Currently, it is being developed by Rudradeep Mukherjee under the mentorship of Nimesh Ghelani. The framework being used is Flask - falsk.pooco.org</p>
 {% endblock %}

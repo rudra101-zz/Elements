@@ -2,12 +2,13 @@ from package import app
 from flask import Flask, flash, redirect, url_for, request, render_template, redirect, session
 from flaskext.mysql import MySQL
 from flask.ext.wtf import Form
-from wtforms import BooleanField, TextField, PasswordField, validators
+from wtforms import BooleanField, TextField, PasswordField, validators, SubmitField
 from models import db,User,Note
 
 class LoginForm(Form):
 	email = TextField('Email',[validators.Required()])
 	password = PasswordField('Password',[validators.Required()])
+	submit = SubmitField("Login")
 	def __init__(self,*args, **kwargs):
 		Form.__init__(self,*args,**kwargs)
 		self.user = None
