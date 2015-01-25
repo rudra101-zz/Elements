@@ -80,7 +80,7 @@ def logout():
 def home():
 	if 'uid' not in session:
 		return render_template('home.html')
-	return render_template('layout.html')
+	return render_template('layout.html',Note = Note)
 
 @app.route('/notes')
 def notes():	

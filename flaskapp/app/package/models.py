@@ -27,7 +27,8 @@ class Note(db.Model):
   title = db.Column(db.String(30))
   body = db.Column(db.String(60))
   uid = db.Column(db.Integer, unique=True)
-   
+  lastUpdated = db.Column(db.TIMESTAMP)
+
   def __init__(self,title,body,uid):
     self.title = title
     self.body = body

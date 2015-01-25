@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Flask App</title>
+<title>Noter</title>
 <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>
 </head>
 <body>
 <header>
   <div class="container">
-    <h1 class="logo"><a href="{{ url_for('home') }}" >Noter</a></h1>
+    <h1 class="logo"><a class="head" href="{{ url_for('home') }}" >Noter</a></h1>
     <strong><nav>
       <ul class="menu">
         <li><a href="{{ url_for('notes') }}">Notes</a></li>
@@ -16,13 +16,26 @@
     </nav></strong>
   </div>
 </header>
+<script>
+function f(){
+
+}
+</script>
+<div class="rpane">
+<p><b>Your Notes</b></p>
+{% for item in Note.query.filter_by(uid = session['uid']).order_by(Note.lastUpdated.desc()) %}
+	<div style="margin:auto;" class="note" onClick = "f()" >        
+		{{ item.title }}
+		<div class={{ "body" + item.nid|string }} style="padding-right:3%;">	
+			{{ item.body }}
+		</div>
+	</div>
+    {% endfor %}
+</div>
+<div>
 <button type="button" onclick="add_field()" button style="width:200;height:200;background-color:lightgreen">
 + Note
 </button>
-<div class="container">
-      {% block content %}
-     {% endblock %}
-</div>
 <script src="{{ url_for('static', filename='scripts/script1.js') }}">
 </script>
 <div id="field">
@@ -33,6 +46,7 @@
 	<textarea rows="6" cols="70" name="nbody"></textarea><br>
 <input type="submit" value="Save">
 </form>
+</div>
 </div>
 </body>
 </html>
