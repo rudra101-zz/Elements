@@ -17,16 +17,18 @@
   </div>
 </header>
 <script>
-function f(){
-
+function f(var id){
+var yourUl = document.getElementById(id);
+yourUl.style.display = yourUl.style.display === 'none' ? '' : 'none';
 }
 </script>
 <div class="rpane">
 <p><b>Your Notes</b></p>
 {% for item in Note.query.filter_by(uid = session['uid']).order_by(Note.lastUpdated.desc()) %}
-	<div style="margin:auto;" class="note" onClick = "f()" >        
+	{% set mystr='f('+item.nid|string + ')' %}	
+	<div style="margin:auto;" class="note" onClick = {{ mystr }} >        
 		{{ item.title }}
-		<div class={{ "body" + item.nid|string }} style="padding-right:3%;">	
+		<div style="display:none;" id={{  item.nid|string }} style="padding-right:3%;">	
 			{{ item.body }}
 		</div>
 	</div>
