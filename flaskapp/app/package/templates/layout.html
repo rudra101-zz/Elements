@@ -11,8 +11,9 @@
     <strong><nav>
       <ul class="menu">
         <li><a href="{{ url_for('notes') }}">Notes</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-      </ul>
+	<li><a href="{{ url_for('about') }}">About</a></li>        
+	<li><a href="{{ url_for('logout') }}">Logout</a></li>
+	</ul>
     </nav></strong>
   </div>
 </header>
@@ -34,9 +35,9 @@ yourUl.style.display = yourUl.style.display === 'none' ? '' : 'none';
 	</div>
     {% endfor %}
 </div>
-<div>
-<button type="button" onclick="add_field()" button style="width:200;height:200;background-color:lightgreen">
-+ Note
+<div class="container">
+<button type="button" onclick="add_field()" button style="width:200;height:200;background-color:skyblue">
+<b>+ Note</b>
 </button>
 <script src="{{ url_for('static', filename='scripts/script1.js') }}">
 </script>

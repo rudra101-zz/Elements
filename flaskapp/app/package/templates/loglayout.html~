@@ -7,9 +7,10 @@
 <body>
 <header>
   <div class="container">
-    <h1 class="logo"><a href="{{ url_for('home') }}" >Noter</a></h1>
+    <h1 class="logo"><a class="head" href="{{ url_for('home') }}" >Noter</a></h1>
     <strong><nav>
       <ul class="menu">
+	<li><a href="{{ url_for('register') }}">Register</a></li>
         <li><a href="{{ url_for('login') }}">Login</a></li>
         <li><a href="{{ url_for('register') }}">Register</a></li>
       </ul>

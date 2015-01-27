@@ -1,7 +1,19 @@
-{% extends "layout.html" %}
-  
-{% block content %}
-  <h3>About Noter</h3>
-  <p>Noter lets you add notes in a jiffy.</p>
-  <p>Currently, it is being developed by Rudradeep Mukherjee under the mentorship of Nimesh Ghelani. The framework being used is Flask - flask.pooco.org</p>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>About Noter</title>
+<strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1 class="logo"><a class="head" href="{{ url_for('home') }}" >Noter</a></h1>
+    </div>
+</header>
+  <div class="jumbo">
+<h2>About Noter</h2>
+<h3>Noter is a web-application which lets you add notes.</h3>
+  <h3>Currently, it is being developed by Rudradeep Mukherjee under the mentorship of Nimesh Ghelani. The underlying framework being used is  <a href ="http://flask.pocoo.org/" target="_blank" style="text-decoration:none">Flask</a>.</h3>
+</div>
+</body>
+</html>

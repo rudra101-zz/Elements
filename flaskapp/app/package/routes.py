@@ -32,6 +32,7 @@ class RegistrationForm(Form):
 	password = PasswordField('Password', [
 	validators.Required(),validators.EqualTo('confirm', message='Passwords must match')])
 	confirm = PasswordField('Repeat Password')
+	submit = SubmitField("Register")
 	def __init__(self, *args, **kwargs):
 		Form.__init__(self, *args, **kwargs)
 	def validate(self):
@@ -84,10 +85,8 @@ def home():
 
 @app.route('/notes')
 def notes():	
-	if 'uid' not in session:
-		return render_template('/')
-	return render_template('notes.html')
-
+	return redirect('/')
+	
 @app.route('/about')
 def about():
   return render_template('about.html')
@@ -102,5 +101,4 @@ def save():
 	flash('Note saved successfully.')
 	return redirect("/")
 
-if __name__ == '__main__':
-	app.run(debug=True)
+
