@@ -70,6 +70,17 @@ def register():
         return redirect('/login')
     return render_template('register.html', form=form)
 
+@app.route('/delete',methods=['POST'])
+def delete():
+	
+	if 'uid' not in session:
+		return redirect('/')
+	note = Note.query.filter_by(nid = request.form['nid']).first()
+	db.session.delete(note)
+	db.session.commit()	
+	#print "We are here!"
+	return render_template("layout.html",Note = Note)
+	
 @app.route('/logout')
 def logout():
 	if 'uid' not in session:
@@ -100,5 +111,4 @@ def save():
 	db.session.commit()
 	flash('Note saved successfully.')
 	return redirect("/")
-
 

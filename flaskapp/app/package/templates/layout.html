@@ -17,30 +17,28 @@
     </nav></strong>
   </div>
 </header>
-<script>
-function f(id){
-var yourUl = document.getElementById(id);
-yourUl.style.display = yourUl.style.display === 'none' ? '' : 'none';
-}
+<script src="{{ url_for('static', filename='scripts/script1.js') }}">
 </script>
 <div class="rpane">
 <p><b>Your Notes</b></p>
 {% for item in Note.query.filter_by(uid = session['uid']).order_by(Note.lastUpdated.desc()) %}
-	{% set mystr='f('+item.nid|string + ')' %}	
-	<div style="margin:auto;" class="note" onClick = {{ mystr }} >        
+	{% set mystr='f('+item.nid|string + ')' %}
+	{% set str = item.nid|string + ','+ session['uid']|string %}
+	{% set delf='g('+ str +')'  %}
+	<div style="margin:auto;" id = {{ str }} class="note" onClick = {{ mystr }} >        
 		{{ item.title }}
 		<div style="display:none;" id={{  item.nid|string }} style="padding-right:3%;">	
 			{{ item.body }}
+		<button onClick={{ delf }}>Edit</a>
+		<button onClick={{ delf }}>Delete</a>
 		</div>
 	</div>
     {% endfor %}
 </div>
 <div class="container">
-<button type="button" onclick="add_field()" button style="width:200;height:200;background-color:skyblue">
-<b>+ Note</b>
+<button type="button" onclick="add_field()" class="btn-custom">
++ Note
 </button>
-<script src="{{ url_for('static', filename='scripts/script1.js') }}">
-</script>
 <div id="field">
 <form action="/save" method="post"> 
 	Add title:<br>
