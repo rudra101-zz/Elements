@@ -1,2 +1,4 @@
-Project Idea: http://www.codeproject.com/Articles/1068287/Part-Building-web-app-using-react-js-express-js-no
+School Finder
+
+Project idea from <a href=" http://www.codeproject.com/Articles/1068287/Part-Building-web-app-using-react-js-express-js-no">here</a>.
 Reference package.json file to build project. Checkout gulfile.js for additional info.
