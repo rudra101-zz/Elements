@@ -1,0 +1,95 @@
+var time = "";
+
+function parseResponse(response){
+
+//console.log(response["result"]);
+var arr = response["result"];
+var count = arr.length;
+var table= document.getElementById("updates");
+var j = 0;
+for(i=0;i<count;i++){
+if(arr[i].phase=="ACTIVE"){
+console.log(arr[i].name);
+time = "Contest is Active";
+console.log(time);
+
+var row = document.createElement("tr");
+row.setAttribute('class','notice');
+var sno= document.createElement("td");
+var contestName= document.createElement("td");
+var timeRemaining = document.createElement("td");
+document.body.appendChild(table);
+table.appendChild(row);
+row.appendChild(sno);
+sno.innerHTML=j+1;
+j++;
+row.appendChild(contestName);
+contestName.innerHTML=arr[i].name;
+row.appendChild(timeRemaining);
+timeRemaining.innerHTML = time;
+}
+
+if(arr[i].phase=="BEFORE"){
+console.log(arr[i].name);
+var timeLeft = - arr[i].relativeTimeSeconds;
+var days = parseInt(timeLeft/86400);
+var hours = parseInt((timeLeft%86400)/3600);
+var minutes = parseInt(((timeLeft%86400)%3600)/60);
+time = days + " Days " + hours + " Hours " + minutes + " Minutes";
+console.log(time);
+
+var row = document.createElement("tr");
+row.setAttribute('class','notice');
+var sno= document.createElement("td");
+var contestName= document.createElement("td");
+var timeRemaining = document.createElement("td");
+document.body.appendChild(table);
+table.appendChild(row);
+row.appendChild(sno);
+sno.innerHTML=j+1;
+j++;
+row.appendChild(contestName);
+contestName.innerHTML=arr[i].name;
+row.appendChild(timeRemaining);
+timeRemaining.innerHTML = time;
+}
+}
+var footer = document.createElement("h4");
+document.body.appendChild(footer);
+footer.innerHTML="<center style='color:#999;'>Developed by Sumit Agarwal(2k11) & Koushik MLN(2k12)</center>";
+var body= document.body;
+var loading = document.getElementById('loading');
+body.removeChild(loading);
+}  
+
+$(function initializer () {
+var loading = document.createElement('div');
+document.body.appendChild(loading);
+loading.setAttribute('id','loading');
+loading.innerHTML="<center><img src='./images/loading.gif'></center>";
+
+var script = document.createElement('script');
+script.src = 'http://codeforces.com/api/contest.list?jsonp=parseResponse';
+document.body.appendChild(script);
+});
+
+
+
+
+/* 
+var xmlhttp = new XMLHttpRequest();
+var url = "http://codeforces.com/api/contest.list";
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = JSON.parse(xmlhttp.responseText);
+        myFunction(myArr);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.setRequestHeader("Access-Control-Allow-Origin","*");
+xmlhttp.send();
+
+function myFunction(arr) {
+    document.getElementbyId("main-box").innerHTML=arr;
+}*/
