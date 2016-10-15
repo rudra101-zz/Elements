@@ -1,0 +1,82 @@
+% LaTeX file for resume 
+% This file uses the resume document class (res.cls)
+
+\documentclass{res} 
+%\usepackage{helvetica} % uses helvetica postscript font (download helvetica.sty)
+%\usepackage{newcent}   % uses new century schoolbook postscript font 
+\usepackage{dirtytalk}
+\setlength{\textheight}{9.5in} % increase text height to fit on 1-page 
+
+\begin{document} 
+
+\name{RUDRADEEP MUKHERJEE\\[12pt]}     % the \\[12pt] adds a blank
+				        % line after name      
+
+\address{\bf PRESENT ADDRESS \\ 403, MAK Park View\\Green Glen Layout, Bellandur\\ Bangalore, Karnataka - 560103}
+\address{\bf  PERMANENT ADDRESS\\S/O Guatam Mukherjee\\Suprakash Banerjee Road, New Barganda\\Giridih, Jharkhand - 815301}
+
+                                  
+\begin{resume}    
+ 
+\section{EDUCATION}          
+    \vspace{-0.1in}	
+   \begin{tabbing}
+   \hspace{2.1in}\= \hspace{2.3in}\= \kill % set up two tab positions
+    {\bf Graduation}  \>Birla Institute of Technology \> June 2012-May 2016\\
+    				\>Mesra, Ranchi
+    \end{tabbing}\vspace{-20pt}      % suppress blank line after tabbing
+    \begin{tabbing}  \hspace{0.2in}
+    Bachelor of Engineering in Computer Science. G.P.A. 7.18/10.0
+    \end{tabbing}\vspace{-20pt}
+    \begin{tabbing}
+   \hspace{2.1in}\= \hspace{2.3in}\= \kill % set up two tab positions
+    {\bf Senior Secondary}  \>D.A.V. Public School \> April 2010-March 2012\\
+    				\>Gandhinagar, Ranchi
+    \end{tabbing}\vspace{-20pt}      % suppress blank line after tabbing
+    \begin{tabbing}  \hspace{0.2in}
+    Class XI-XII. Percentage in XII boards: 91\%
+    \end{tabbing}\vspace{-20pt}
+     \begin{tabbing}
+   \hspace{2.1in}\= \hspace{2.3in}\= \kill % set up two tab positions
+    {\bf Secondary Schooling}  \>D.A.V. Public School \> till March 2010\\
+    				\>Sirsia, Giridih
+    \end{tabbing}\vspace{-20pt}      % suppress blank line after tabbing
+    \begin{tabbing}  \hspace{0.2in}
+    Upto Class X. Percentage in X boards: 93.1\%
+    \end{tabbing}
+
+ 
+\section{EXPERIENCE}
+   \vspace{-0.1in}	
+   \begin{tabbing}
+   \hspace{2.1in}\= \hspace{2.3in}\= \kill % set up two tab positions
+    {\bf SDE Intern} \>Nestaway  Technologies   \>June 2016-Present\\
+                             \>Bangalore, Karnataka
+   \end{tabbing}      % suppress blank line after tabbing
+   \begin{itemize}
+    \item Built a chat functionality into an existing android application. Used Firebase Realtime Database(FRD) to store chat messages. On the client side, used an adapter from Firebase UI to sync with FRD.
+    \item Built a formatter(in ECMAScript) which takes the diff of two JSON objects and returns a formatted output in Textile markup language. The diff calculation part comes from the npm jsondiffpatch library.
+    \item Was part of House-Onboarding squad. The squad was working on migrating existing code to Amazon Web Services. Worked on rendering HTML forms using Mozilla's react-jsonschema-form library.
+    \end{itemize}
+
+\section{PROJECTS}          
+    \begin{itemize}
+    \item Used Flask(a Python microframework) to create a web-application called \say{Noter}. Noter lets an user save/delete/update his notes. Used MySQL as the database engine. 
+    \item Co-built a Google Chrome extension called \say{CodeForces Calendar} to show timeline of upcoming contests on CodeForces.  
+    \end{itemize}
+ 
+ 
+\section{ACHIEVEMENTS}          
+   \begin{itemize}
+   \item College Winner in American Express HackerAce 2015. Awarded a Tablet for my performance.
+    \item Was selected as an administrator for Direct Connect Hub at BIT Mesra(2015-2016).
+    \item All India Rank 2853 in AIEEE 2012.
+    \item All India Rank 6477 in IITJEE 2012.
+    \item Rank 642 in WBJEE 2012.
+    \end{itemize}       
+ 
+\section{EXTRACURRICULARS}          
+     {\bf Competitive Programming}: Cleared Facebook Hacker Cup Qualification Round 2015. Ranked 373 out of 8486 registered teams in Codechef Snackdown '15.
+ 
+\end{resume}
+\end{document}
